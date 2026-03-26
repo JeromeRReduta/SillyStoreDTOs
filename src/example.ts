@@ -8,6 +8,7 @@ function checkLogger(): void {
 
 function checkDotEnv(): void {
     const { DB_CONNECTION_STRING, JWT_SECRET, LOG_LEVEL, PORT } = process.env;
+    logger.debug("from process env:", process.env);
     logger.debug("env vars from example:\n", [
         DB_CONNECTION_STRING,
         JWT_SECRET,
