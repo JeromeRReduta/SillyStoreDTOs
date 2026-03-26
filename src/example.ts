@@ -1,3 +1,4 @@
+import configs from "../configs/Configs";
 import logger from "../logging/Logger";
 import dotenv from "dotenv";
 
@@ -7,23 +8,23 @@ function checkLogger(): void {
 }
 
 function checkDotEnv(): void {
-    const { DB_CONNECTION_STRING, JWT_SECRET, LOG_LEVEL, PORT } = process.env;
-    logger.debug("from process env:", process.env);
+    const { DATABASE_URL, JWT_SECRET, LOG_LEVEL, PORT } = process.env;
     logger.debug("env vars from example:\n", [
-        DB_CONNECTION_STRING,
+        DATABASE_URL,
         JWT_SECRET,
         LOG_LEVEL,
         PORT,
     ]);
 }
 
+function checkConfigs(): void {
+    logger.debug("configs: ", configs);
+}
+
 function main() {
     checkLogger();
     checkDotEnv();
+    checkConfigs();
 }
 
-dotenv.config({
-    debug: true,
-    path: __dirname + "/./../.env." + process.env.NODE_ENV,
-});
 main();
