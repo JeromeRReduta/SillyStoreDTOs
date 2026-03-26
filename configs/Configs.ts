@@ -25,16 +25,16 @@ dotenv.config({
 
 /** Note - if .env files/configs are improperly set, this SHOULD crash */
 const configs: Configs = {
-    env: requireStr(process.env.NODE_ENV),
-    port: requireNumber(process.env.PORT),
+    env: requireStr("NODE_ENV", process.env.NODE_ENV),
+    port: requireNumber("PORT", process.env.PORT),
     db: {
-        connectionString: requireStr(process.env.DATABASE_URL),
+        connectionString: requireStr("DATABASE_URL", process.env.DATABASE_URL),
     },
     jwt: {
-        secret: requireStr(process.env.JWT_SECRET),
+        secret: requireStr("JWT_SECRET", process.env.JWT_SECRET),
     },
     logging: {
-        minLevel: requireNumber(process.env.MIN_LOG_LEVEL),
+        minLevel: requireNumber("MIN_LOG_LEVEL", process.env.MIN_LOG_LEVEL),
     },
 };
 
