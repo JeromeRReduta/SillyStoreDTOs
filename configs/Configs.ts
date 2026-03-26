@@ -1,7 +1,11 @@
+import { error } from "console";
 import dotenv from "dotenv";
+import { prototype } from "events";
+import { env } from "process";
+import { requireNumber, requireStr } from "./ConfigValidation";
 
 export interface Configs {
-    readonly env: "development" | "production" | "test" | "example";
+    readonly env: string;
     readonly port: number;
     readonly db: {
         readonly connectionString: string;
@@ -10,7 +14,7 @@ export interface Configs {
         readonly secret: string;
     };
     readonly logging: {
-        readonly level: number;
+        readonly minLevel: number;
     };
 }
 
@@ -21,16 +25,16 @@ dotenv.config({
 
 /** Note - if .env files/configs are improperly set, this SHOULD crash */
 const configs: Configs = {
-    env: process.env.NODE_ENV,
-    port: parseInt(process.env.PORT),
+    env: requireStr(process.env.NODE_ENV),
+    port: requireNumber(process.env.PORT),
     db: {
-        connectionString: process.env.DATABASE_URL,
+        connectionString: requireStr(process.env.DATABASE_URL),
     },
     jwt: {
-        secret: process.env.JWT_SECRET,
+        secret: requireStr(process.env.JWT_SECRET),
     },
     logging: {
-        level: Number.parseInt(process.env.LOG_LEVEL),
+        minLevel: requireNumber(process.env.MIN_LOG_LEVEL),
     },
 };
 

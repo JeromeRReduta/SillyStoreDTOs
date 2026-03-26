@@ -7,11 +7,11 @@ function checkLogger(): void {
 }
 
 function checkDotEnv(): void {
-    const { DATABASE_URL, JWT_SECRET, LOG_LEVEL, PORT } = process.env;
+    const { DATABASE_URL, JWT_SECRET, MIN_LOG_LEVEL, PORT } = process.env;
     logger.debug("env vars from example:\n", [
         DATABASE_URL,
         JWT_SECRET,
-        LOG_LEVEL,
+        MIN_LOG_LEVEL,
         PORT,
     ]);
 }
