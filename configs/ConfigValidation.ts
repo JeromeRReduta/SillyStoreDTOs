@@ -1,11 +1,11 @@
-export function requireStr(varName: string, str: string): string {
+export function requireStr(varName: string, str?: string): string {
     if (!str) {
         throw Error(`Error - expected ${varName} but found ${str}`);
     }
     return str;
 }
 
-export function requireNumber(varName: string, str: string): number {
+export function requireNumber(varName: string, str?: string): number {
     if (!str) {
         throw Error(`Error - expected ${varName} to exist but found ${str}`);
     }
