@@ -1,1 +1,3 @@
-/** TODO: stub */
+export interface CreateOrderRequest {
+    readonly dateStr: string;
+}
